@@ -100,38 +100,43 @@ int main(int argc, char *argv[])
             }
             break;
 
-        case 5:
-            if (cont == 0 || cont1 == 0)
-            {
-                printf("No hay datos suficientes para mostrar estadísticas.\n");
-            }
-            else
-            {
-                for (int i = 0; i < cont1; i++)
-                {
-                    float maximo = notas[0][i];
-                    float minimo = notas[0][i];
-                    suma = 0;
-                    aprobados = 0;
+      case 5:
+    if (cont == 0 || cont1 == 0)
+    {
+        printf("No hay datos suficientes para mostrar estadísticas.\n");
+    }
+    else
+    {
+        printf("\nLista\t\tNombres\t\tMateria\t\tMejor N\t\tPeor N\t\tAprobados\n");
 
-                    for (int j = 0; j < cont; j++)
-                    {
-                        float nota = notas[j][i];
-                        suma += nota;
-                        if (nota > maximo)
-                            maximo = nota;
-                        if (nota < minimo)
-                            minimo = nota;
-                        if (nota >= 6)
-                            aprobados++;
-                    }
-                    printf("\nMateria %d: %s\n", i, materia[i]);
-                    printf("Promedio: %.2f\n", suma / cont);
-                    printf("Mejor nota: %.2f\n", maximo);
-                    printf("Peor nota: %.2f\n", minimo);
-                    printf("Cantidad de aprobados: %d\n", aprobados);
+        for (int i = 0; i < cont1; i++)
+        {
+            float maximo = notas[0][i];
+            float minimo = notas[0][i];
+            suma = 0;
+            aprobados = 0;
+
+            for (int j = 0; j < cont; j++)
+            {
+                float nota = notas[j][i];
+                suma += nota;
+                if (nota > maximo)
+                {
+                    maximo = nota;
+                }
+                if (nota < minimo)
+                {
+                    minimo = nota;
+                }
+                if (nota >= 6)
+                {
+                    aprobados++;
                 }
             }
+            printf("%d\t\t%s\t\t%s\t\t%.2f\t\t%.2f\t\t%d\n", i, nombre[0], materia[i], maximo, minimo, aprobados);
+        }
+    }
+    break;
             break;
 
         default:
@@ -144,4 +149,3 @@ int main(int argc, char *argv[])
     printf("Saliendo del sistema educacional.\n");
     return 0;
 }
-
