@@ -10,17 +10,22 @@ int main(int argc, char *argv[])
     do
     {
         printf("----------------------\n");
-        printf("1.Registrar Estudiante\n");
-        printf("2.Registrar materias estudiantes\n");
-        printf("3.Registrar notas\n");
-        printf("4.Ver promedio de notas por estudiante\n");
-        printf("5.Ver estadísticas por asignatura\n");
-        printf("6.Salir\n");
+        printf("1. Registrar Estudiante\n");
+        printf("2. Registrar Materias de Estudiantes\n");
+        printf("3. Registrar Notas\n");
+        printf("4. Ver Promedio de Notas por Estudiante\n");
+        printf("5. Ver Estadísticas por Asignatura\n");
+        printf("6. Salir\n");
         printf("----------------------\n");
         printf(">>");
         scanf("%d", &opc);
         getchar();
 
+        if (opc < 1 || opc > 6)
+        {
+            printf("Opción inválida. Intente nuevamente.\n");
+            continue;
+        }
         switch (opc)
         {
         case 1:
@@ -35,14 +40,14 @@ int main(int argc, char *argv[])
             }
             else
             {
-                printf("Haz alcanzado el maximo de estudiantes.\n");
+                printf("Has alcanzado el máximo de estudiantes.\n");
             }
             break;
-
+            
         case 2:
             if (cont1 < 3)
             {
-                printf("Ingrese la materia %d que quiere registrar:\n", cont1);
+                printf("Ingrese la materia %d:\n", cont1);
                 fgets(materia[cont1], 15, stdin);
                 len = strlen(materia[cont1]) - 1;
                 if (materia[cont1][len] == '\n')
@@ -51,7 +56,7 @@ int main(int argc, char *argv[])
             }
             else
             {
-                printf("Maximo de materias Ingresadas.\n");
+                printf("Máximo de materias ingresadas.\n");
             }
             break;
 
@@ -76,9 +81,8 @@ int main(int argc, char *argv[])
                             getchar();
                             if (validar != 1 || nota < 0 || nota > 10)
                             {
-                                printf("Nota invalida. Ingrese un número entre 0 y 10.\n");
-                                while (getchar() != '\n')
-                                    ;
+                                printf("Nota inválida. Ingrese un número entre 0 y 10.\n");
+                                while (getchar() != '\n'); 
                             }
                         } while (validar != 1 || nota < 0 || nota > 10);
                         notas[i][j] = nota;
@@ -96,56 +100,59 @@ int main(int argc, char *argv[])
                     suma += notas[i][j];
                 }
                 if (cont1 > 0)
-                    printf("Promedio de %d %s: %.2f\n", i, nombre[i], suma / cont1);
+                    printf("Promedio de %s: %.2f\n", nombre[i], suma / cont1);
             }
             break;
 
-      case 5:
-    if (cont == 0 || cont1 == 0)
-    {
-        printf("No hay datos suficientes para mostrar estadísticas.\n");
-    }
-    else
-    {
-        printf("\nLista\t\tNombres\t\tMateria\t\tMejor N\t\tPeor N\t\tAprobados\n");
-
-        for (int i = 0; i < cont1; i++)
-        {
-            float maximo = notas[0][i];
-            float minimo = notas[0][i];
-            suma = 0;
-            aprobados = 0;
-
-            for (int j = 0; j < cont; j++)
+        case 5:
+            if (cont == 0 || cont1 == 0)
             {
-                float nota = notas[j][i];
-                suma += nota;
-                if (nota > maximo)
+                printf("No hay datos suficientes para mostrar estadísticas.\n");
+            }
+            else
+            {
+                printf("\nEstadísticas por materia:\n");
+                printf("Materia\t\tMejor Nota\t\tPeor Nota\t\tAprobados\n");
+
+                for (int i = 0; i < cont1; i++)
                 {
-                    maximo = nota;
-                }
-                if (nota < minimo)
-                {
-                    minimo = nota;
-                }
-                if (nota >= 6)
-                {
-                    aprobados++;
+                    float maximo = notas[0][i];
+                    float minimo = notas[0][i];
+                    suma = 0;
+                    aprobados = 0;
+
+                    for (int j = 0; j < cont; j++)
+                    {
+                        float nota = notas[j][i];
+                        suma += nota;
+                        if (nota > maximo)
+                        {
+                            maximo = nota;
+                        }
+                        if (nota < minimo)
+                        {
+                            minimo = nota;
+                        }
+                        if (nota >= 6)
+                        {
+                            aprobados++;
+                        }
+                    }
+                    printf("%s\t\t%.2f\t\t%.2f\t\t%d\n", materia[i], maximo, minimo, aprobados);
                 }
             }
-            printf("%d\t\t%s\t\t%s\t\t%.2f\t\t%.2f\t\t%d\n", i, nombre[0], materia[i], maximo, minimo, aprobados);
-        }
-    }
-    break;
+            break;
+
+        case 6:
+            printf("Saliendo del sistema educacional.\n");
             break;
 
         default:
-            if (opc != 6)
-                printf("Opción inválida.\n");
+            printf("Opción inválida. Intente nuevamente.\n");
+            break;
         }
 
     } while (opc != 6);
 
-    printf("Saliendo del sistema educacional.\n");
     return 0;
 }
