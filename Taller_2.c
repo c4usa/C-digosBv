@@ -92,17 +92,30 @@ int main(int argc, char *argv[])
             break;
 
         case 4:
-            for (int i = 0; i < cont; i++)
+         if (cont == 0 || cont1 == 0)
             {
-                suma = 0;
-                for (int j = 0; j < cont1; j++)
-                {
-                    suma += notas[i][j];
-                }
-                if (cont1 > 0)
-                    printf("Promedio de %s: %.2f\n", nombre[i], suma / cont1);
+                printf("No hay datos suficientes para mostrar estadísticas.\n");
             }
-            break;
+            else 
+            {
+                for (int i = 0; i < cont; i++)
+    {
+        suma = 0;
+        printf("\nNotas de %s:\n", nombre[i]);
+        for (int j = 0; j < cont1; j++)
+        {
+            printf("%s: %.2f\n", materia[j], notas[i][j]);
+            suma += notas[i][j]; 
+        }
+        if (cont1 > 0)
+        {
+            printf("Promedio de %s: %.2f\n", nombre[i], suma / cont1);
+        }
+    }
+            }
+    
+    
+    break;
 
         case 5:
             if (cont == 0 || cont1 == 0)
