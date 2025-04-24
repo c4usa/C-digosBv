@@ -9,7 +9,7 @@ int cont = 0, cont1 = 0;
 void limpiarBuffer() {
     while (getchar() != '\n');
 }
-int esTextoValido(char *texto) {
+int esTextoValido(char texto[]) {
     for (int i = 0; texto[i] != '\0'; i++) {
         if (!((texto[i] >= 'A' && texto[i] <= 'Z') ||
               (texto[i] >= 'a' && texto[i] <= 'z') ||
