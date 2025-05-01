@@ -34,7 +34,7 @@ void ingresarCompetidores(char nombres[][50], int puntos[], int total) {
     char nombreTemporal[50];
     for (int i = 0; i < total;) {
         printf("Ingrese el nombre del boxeador #%d: ", i);
-        fgets(nombreTemporal, sizeof(nombreTemporal), stdin);
+        fgets(nombreTemporal, 50 , stdin);
         nombreTemporal[strcspn(nombreTemporal, "\n")] = '\0';
         if (strlen(nombreTemporal) == 0) {
             printf("El nombre no puede estar vacío.\n");
