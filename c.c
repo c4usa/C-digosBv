@@ -55,11 +55,12 @@ void combatesIniciales(char nombres[][50], int puntos[], int total) {
         ganador = leerEntero(1, 2);
         printf("¿Fue por knockout? (1 = Sí, 0 = No): ");
         knockout = leerEntero(0, 1);
-        if (ganador == 1) {
-            puntos[i] += (knockout == 1) ? 3 : 1;
-        } else {
-            puntos[i + 1] += (knockout == 1) ? 3 : 1;
-        }
+         if (knockout == 1) {
+    puntos[i + 1] += 3;
+         } else {
+    puntos[i + 1] += 1;
+}
+
     }
 }
 int encontrarFinalista1(int puntos[], int total) {
