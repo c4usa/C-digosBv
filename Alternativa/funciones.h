@@ -1,0 +1,13 @@
+void ingresarInventario();
+void mostrarInventario();
+void producirProducto();
+void editarDatos();
+void eliminarDatos();
+void mostrarResumenDemanda();
+void mostrarEstadisticasProduccion();
+void mostrarFabricables();
+void mostrarMenu();
+int leerEntero(char *mensaje);
+float leerFloat(char *mensaje);
+char leerCaracter(char *mensaje);
+int buscarProducto(char *nombre);
